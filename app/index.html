@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" ng-app="natchApp">
+  <head>
+    <meta charset="utf-8">
+    <title>natch</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/onsenui/build/css/onsenui.css">
+    <link rel="stylesheet" href="bower_components/onsenui/build/css/onsen-css-components.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <ons-page>
+      <ons-toolbar modifier="transparent">
+        <div class="right" style="padding:5% 8%; color:#cf9714;"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
+      </ons-toolbar>
+
+      <ons-tabbar animation="fade">
+        <ons-tab page="home.html">
+          <span style="font-variant:small-caps;">favourites</span>
+        </ons-tab>
+        <ons-tab page="fav.html" active="true">
+          <ons-icon icon="fa-random"></ons-icon>
+        </ons-tab>
+        <ons-tab page="settings.html">
+          <span style="font-variant:small-caps;">natches <span style="font-size:75%; color:#000;border-radius:10px; background:#fff; margin-left:2px; margin-right:5px; padding:2px 5px;">22</span></span>
+        </ons-tab>
+      </ons-tabbar>
+    </ons-page>
+
+    <ons-template id="home.html">
+      This page displays your liked names.
+    </ons-template>
+
+    <ons-template id="fav.html">
+      <img src="images/logo.svg" style="margin:15% auto; display:block; height:17%;">
+
+      <natch-voter></natch-voter>
+      <natch-notification-area icon="'fa-info'" message="'Swipe left to like, right for maybe and up to remove.'"></natch-notification-area>
+
+    </ons-template>
+
+    <ons-template id="settings.html">
+      This page displays either the "decide together" connection thing or the found natches.
+    </ons-template>
+
+    <script type="text/ng-template" id="notification.html">
+      <ons-row style="width:80%; background:#fff; margin:10% auto 0; height:12%; border-top:3px solid #cf9714;">
+        <ons-col width="48px" align="center">
+          <ons-icon size="24px" fixed-width="true" icon="{{icon}}"></ons-icon>
+        </ons-col>
+        <ons-col align="center"><div style="font-size:88%; line-height:135%;"><div style="text-align:left;">{{message}}</div></ons-col>
+      </one-row>
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/onsenui/build/js/onsenui.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

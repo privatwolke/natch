@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+.tab-bar__content {
+	background:url(../images/bg.svg) center center no-repeat #ffbd1b;
+	background-size:100%;
+}
+
+.page__content {
+	background:transparent;
+}
+
+.tab-bar {
+	background:#333;
+}
+
+:checked + .tab-bar__button {
+	color:#f1b729;
+}
+
+.page {
+	font-family:"Lato", "Roboto", "Droid Sans", Helvetica, Arial, sans-serif;
+	font-weight:400;
+	overflow:hidden;
+}
+
+.row .col { text-align:center; }
+
+
+.voter {
+
+	width:80%;
+	margin:0 auto;
+	position:relative;
+	height:35%;
+
+	.row {
+		position:absolute;
+		height:100%;
+		top:0;
+		transition:300ms all ease-out;
+		margin:0;
+		font-size:150%; font-weight:700;
+		background:#fff;
+		opacity:1;
+		border-top:3px solid #cf9714;
+	}
+
+	.row.back {
+		background:transparent;
+		border:0;
+		color:#000;
+		font-size:100%;
+	}
+
+	.gone_right { margin-left:150%; transition:200ms all ease-in; }
+	.gone_left { margin-left:-150%; transition:200ms all ease-in; }
+	.gone_down { color:#fff; transition:150ms color ease-in; opacity:0; transition:200ms opacity ease-in; }
+}

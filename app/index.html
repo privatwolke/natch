@@ -25,10 +25,10 @@
       </ons-toolbar>
 
       <ons-tabbar animation="fade">
-        <ons-tab page="home.html">
+        <ons-tab page="home.html" active="true">
           <span style="font-variant:small-caps;">favourites</span>
         </ons-tab>
-        <ons-tab page="fav.html" active="true">
+        <ons-tab page="fav.html">
           <ons-icon icon="fa-random"></ons-icon>
         </ons-tab>
         <ons-tab page="settings.html">
@@ -38,7 +38,9 @@
     </ons-page>
 
     <ons-template id="home.html">
-      This page displays your liked names.
+      <img src="images/logo.svg" style="margin:15% auto; display:block; height:17%;">
+
+      <natch-favourites></natch-favourites>
     </ons-template>
 
     <ons-template id="fav.html">
@@ -50,7 +52,8 @@
     </ons-template>
 
     <ons-template id="settings.html">
-      This page displays either the "decide together" connection thing or the found natches.
+      <img src="images/logo.svg" style="margin:15% auto; display:block; height:17%;">
+      <p style="background:#fff; width:80%; padding:4%; border-top:3px solid #cf9714; margin:0 auto;line-height:135%;">This page displays either the "decide together" connection thing or the found natches.</p>
     </ons-template>
 
     <script type="text/ng-template" id="notification.html">

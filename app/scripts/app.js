@@ -9,6 +9,7 @@
  * Main module of the application.
  */
 var app = angular.module('natchApp', ['ngAnimate', 'ngTouch', 'onsen']);
+var favourites = [{name: "Testname 1"}, {name: "Testname 2"}];
 
 app.controller('VoterController', ["$scope", "$timeout", "$db", function($scope, $timeout, $db) {
 
@@ -28,6 +29,9 @@ app.controller('VoterController', ["$scope", "$timeout", "$db", function($scope,
 
   $scope.tearOff = function(direction) {
     init();
+    if ($scope.name !== "Drag to get started!" && direction == "left") {
+      favourites.push($scope.name);
+    }
     $scope.message = messages[direction];
     $scope.$apply(function($scope) { $scope.gone[direction] = true; });
     $timeout(function() {
@@ -58,6 +62,20 @@ app.directive("natchNotificationArea", function() {
 });
 
 
+app.controller('FavouritesController', ["$scope", "$timeout", "$db", function($scope, $timeout, $db) {
+  $scope.favourites = favourites.sort($db.sortAscending("name"));
+}]);
+
+app.directive("natchFavourites", function() {
+  return {
+    restrict: "E",
+    templateUrl: "templates/favourites.html",
+    controller: "FavouritesController",
+    controllerAs: "favouritesCtrl"
+  };
+});
+
+
 app.factory("$db", ["$http", function($http) {
   var instance = new Object();
   var asyncLoading = false;
@@ -68,7 +86,7 @@ app.factory("$db", ["$http", function($http) {
     asyncLoading = true;
     $http.get("namen.json").success(function(data, status, headers, config) {
       names = data;
-      localStorage["names"] = JSON.stringify(data);
+      localStorage["names"] = JSON.stringify(data["content"]);
       asyncLoading = false;
     }).error(function(data, status, headers, config) {
       asyncLoading = false;

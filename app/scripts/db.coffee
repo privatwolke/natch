@@ -105,7 +105,10 @@ class window.Collection
 		return id
 
 
-	update: (id, record) ->
+	update: (record) ->
+		id = record.id
+		record = record.record
+
 		# update all indices
 		for indexSpec of @indices
 			@indices[indexSpec].remove(id)
@@ -179,6 +182,9 @@ class window.RecordSet
 		@cursor = 0
 
 
+	list: -> @records
+
+
 	next: ->
 		@records[@cursor++]
 
@@ -232,3 +238,21 @@ class window.DBUtils
 		for own key, value of record
 			target[key] = value
 		return target
+
+
+
+class window.DatabaseFunctions
+	@sortAscending: (field) ->
+		(a, b) ->
+			if      a.record[field] > b.record[field] then  1
+			else if a.record[field] < b.record[field] then -1
+			else    0
+
+	@sortDescending: (field) ->
+		(a, b) ->
+			if      a.record[field] < b.record[field] then  1
+			else if a.record[field] > b.record[field] then -1
+			else    0
+
+	@is: (field, value) ->
+		(record) -> record.record[field] is value

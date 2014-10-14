@@ -1,7 +1,5 @@
 app = angular.module "natchApp", ["ngAnimate", "ngTouch", "onsen"]
 
-favourites = [{name: "Testname 1"}, {name: "Testname 2"}]
-
 app.controller "VoterController", [
 	"$scope", "$timeout", "$http", "$db", ($scope, $timeout, $http, $db) ->
 
@@ -10,7 +8,7 @@ app.controller "VoterController", [
 			LIKED:    "1"
 			DISLIKED: "2"
 
-		$scope.name = "Loading…"
+		$scope.name = record : name: "Loading…"
 		$scope.gone =  left: false, down: false
 		messages = left: "Liked", down: "Removed"
 
@@ -32,7 +30,7 @@ app.controller "VoterController", [
 					  else
 					    status.DISLIKED
 
-					namesCollection.update($scope.name["id"], $scope.name["record"])
+					namesCollection.update($scope.name)
 					$scope.message = messages[direction]
 
 				$scope.$apply(($scope) -> $scope.gone[direction] = true)
@@ -50,7 +48,7 @@ app.controller "VoterController", [
 			# fill the collection for the first time
 			$http.get("namen.json").success((data, status, headers, config) ->
 					for record in data.content
-						record["status"] = 0
+						record["status"] = "0"
 						namesCollection.add(record)
 
 					run()
@@ -78,7 +76,23 @@ app.directive "natchNotificationArea", ->
 
 app.controller "FavouritesController", [
 	"$scope", "$timeout", "$db", ($scope, $timeout, $db) ->
-		$scope.favourites = []
+		namesCollection = $db.collection("names")
+		$scope.favourites = namesCollection.query(
+			"status",
+			(key) -> key is "1"
+		).sort(DatabaseFunctions.sortAscending("name")).list()
+
+		$scope.remove = (record) ->
+			#index = $scope.favourites.indexOf(record)
+			#record.record["status"] = "2"
+			#namesCollection.update(record)
+
+			#$scope.$apply(($scope) -> $scope.favourites.splice(index, 1))
+
+		$scope.isGone = (record) ->
+			#$scope.favourites.indexOf(record) != -1
+			false
+
 	]
 
 app.directive "natchFavourites", ->
@@ -88,4 +102,4 @@ app.directive "natchFavourites", ->
 	controllerAs: "favouritesCtrl"
 
 
-app.factory "$db", -> new Database(persist: false)
+app.factory "$db", -> new Database(persist: true)

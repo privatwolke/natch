@@ -6,9 +6,9 @@ app.controller "VoterController", [
 	"$scope", "$timeout", "$http", "$db", ($scope, $timeout, $http, $db) ->
 
 		status =
-			UNRATED: 0
-			LIKED: 1
-			DISLIKED: 2
+			UNRATED:  "0"
+			LIKED:    "1"
+			DISLIKED: "2"
 
 		$scope.name = "Loading…"
 		$scope.gone =  left: false, down: false
@@ -17,7 +17,11 @@ app.controller "VoterController", [
 		window.namesCollection = $db.collection("names")
 
 		run = ->
-			names = namesCollection.query("status", (key) -> key is status.UNRATED).shuffle()
+			names = namesCollection.query(
+				"status",
+				(key) -> key is status.UNRATED
+			).shuffle()
+
 			$scope.name = names.next()
 
 			$scope.tearOff = (direction) ->

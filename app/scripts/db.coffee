@@ -67,11 +67,12 @@ class window.Collection
 		@indices[indexSpec] = new Index(@database, @name, indexSpec)
 
 
+	# attention when writing funcFilter(key) -- argument is ALWAYS a string
 	query: (indexSpec, funcFilter) ->
 		index = @database.data[@name].indices[indexSpec]
 		records = {}
 		for key of index
-			if funcFilter(JSON.parse(key))
+			if funcFilter(key)
 				for id in index[key]
 					records[id] = @database.data[@name].records[id]
 

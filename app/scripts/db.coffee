@@ -60,7 +60,11 @@ class window.Collection
 
 
 	all: ->
-		new RecordSet(@database.data[@name].records)
+		result = []
+		for id, record of @database.data[@name].records
+			result.push("id": id, "record": DBUtils.clone(@database.data[@name].records[id]))
+
+		new RecordSet(result)
 
 
 	index: (indexSpec) ->
@@ -70,11 +74,11 @@ class window.Collection
 	# attention when writing funcFilter(key) -- argument is ALWAYS a string
 	query: (indexSpec, funcFilter) ->
 		index = @database.data[@name].indices[indexSpec]
-		records = {}
+		records = []
 		for key of index
 			if funcFilter(key)
 				for id in index[key]
-					records[id] = @database.data[@name].records[id]
+					records.push("id": id, "record": DBUtils.clone(@database.data[@name].records[id]))
 
 		return new RecordSet(records)
 
@@ -89,7 +93,7 @@ class window.Collection
 
 	add: (record) ->
 		id = @id()
-		@database.data[@name].records[id] = record
+		@database.data[@name].records[id] = DBUtils.clone(record)
 
 		# update all indices
 		for indexSpec of @indices
@@ -101,7 +105,18 @@ class window.Collection
 		return id
 
 
-	update: (id, record) -> id
+	update: (id, record) ->
+		# update all indices
+		for indexSpec of @indices
+			@indices[indexSpec].remove(id)
+			@indices[indexSpec].add(id, record)
+
+		@database.data[@name].records[id] = DBUtils.clone(record)
+
+		# commit the changes to localStorage
+		@commit()
+
+		return id
 
 
 	remove: (id) ->
@@ -158,13 +173,7 @@ class window.Index
 
 
 class window.RecordSet
-	constructor: (records) ->
-		if records not instanceof Array
-			@records = []
-			for k, record of records
-				@records.push("id": JSON.parse(k), "record": record)
-		else
-			@records = records
+	constructor: (@records) ->
 
 		@length = @records.length
 		@cursor = 0
@@ -186,6 +195,7 @@ class window.RecordSet
 		new RecordSet(@records[0 .. num])
 
 
+	# funcSort({"id": 0, "record": { ... }})
 	sort: (funcSort) ->
 		new RecordSet(@records.sort(funcSort))
 
@@ -205,6 +215,7 @@ class window.RecordSet
 		new RecordSet(@records)
 
 
+	# funcFilter({"id": 0, "record": { ... }})
 	filter: (funcFilter) ->
 		filtered = []
 		for record in @records
@@ -212,3 +223,12 @@ class window.RecordSet
 				filtered.push(record)
 
 		new RecordSet(filtered)
+
+
+
+class window.DBUtils
+	@clone: (record) ->
+		target = {}
+		for own key, value of record
+			target[key] = value
+		return target

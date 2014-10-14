@@ -61,15 +61,13 @@ module.exports = (grunt) ->
 				files: [
 					"<%= yeoman.app %>/{,*/}*.html"
 					".tmp/styles/{,*/}*.css"
-					"<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
+					"<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}",
+					".tmp/scripts/*.js"
 				]
 
 			coffee:
 				files: ["<%= yeoman.app %>/scripts/*.coffee"]
-				tasks: [
-					"coffeelint"
-					"coffee"
-				]
+				tasks: ["coffee"]
 
 
 		# The actual grunt server settings

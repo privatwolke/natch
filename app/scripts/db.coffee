@@ -1,8 +1,8 @@
 class window.Database
 	constructor: (@options = {}) ->
 		# default options
-		@options.prefix  = options.prefix  ? "__COLLECTION__"
-		@options.persist = options.persist ? true
+		@options.prefix  = @options.prefix  ? "__COLLECTION__"
+		@options.persist = @options.persist ? true
 
 		@data = {}
 
@@ -25,8 +25,7 @@ class window.Database
 
 	drop: (collectionName) ->
 		delete @data[collectionName]
-		delete localStorage[@options.prefix + collectionName]
-		@commit(collectionName)
+		localStorage.removeItem(@options.prefix + collectionName)
 
 
 	commit: (collectionName) ->
@@ -72,7 +71,7 @@ class window.Collection
 		index = @database.data[@name].indices[indexSpec]
 		records = {}
 		for key of index
-			if funcFilter(key)
+			if funcFilter(JSON.parse(key))
 				for id in index[key]
 					records[id] = @database.data[@name].records[id]
 
@@ -92,13 +91,16 @@ class window.Collection
 		@database.data[@name].records[id] = record
 
 		# update all indices
-		for index in @indices
-			index.add(id, record)
+		for indexSpec of @indices
+			@indices[indexSpec].add(id, record)
 
 		# commit the changes to localStorage
 		@commit()
 
 		return id
+
+
+	update: (id, record) -> id
 
 
 	remove: (id) ->
@@ -148,7 +150,6 @@ class window.Index
 
 	remove: (id) ->
 		record = @database.data[@name].records[id]
-		console.log "found record: ", record
 		value = @value(record)
 		index = @database.data[@name].indices[@indexSpec][value].indexOf(id)
 		@database.data[@name].indices[@indexSpec][value].splice(index, 1)
@@ -157,9 +158,12 @@ class window.Index
 
 class window.RecordSet
 	constructor: (records) ->
-		@records = []
-		for k, record of records
-			@records.push("id": JSON.parse(k), "record": record)
+		if records not instanceof Array
+			@records = []
+			for k, record of records
+				@records.push("id": JSON.parse(k), "record": record)
+		else
+			@records = records
 
 		@length = @records.length
 		@cursor = 0
@@ -183,6 +187,21 @@ class window.RecordSet
 
 	sort: (funcSort) ->
 		new RecordSet(@records.sort(funcSort))
+
+
+	shuffle: ->
+		# adapted from https://github.com/coolaj86/knuth-shuffle
+		currentIndex = @records.length
+
+		while currentIndex != 0
+			randomIndex = Math.floor(Math.random() * currentIndex)
+			currentIndex--
+
+			temporaryValue = @records[currentIndex]
+			@records[currentIndex] = @records[randomIndex]
+			@records[randomIndex] = temporaryValue
+
+		new RecordSet(@records)
 
 
 	filter: (funcFilter) ->

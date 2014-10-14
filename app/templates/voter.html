@@ -2,7 +2,7 @@
 	<ons-gesture-detector ng-swipeleft="tearOff('left')" ng-swipeup="tearOff('down')">
 		<ons-row class="back"><ons-col align="center"><ons-icon size="80%" icon="fa-check"></ons-icon> {{message}}</ons-col></ons-row>
 		<ons-row ng-class="{gone_left: gone.left, gone_down: gone.down}">
-			<ons-col align="center">{{name.name}}</ons-col>
+			<ons-col align="center">{{name.record.name}}</ons-col>
 		</ons-row>
 	</ons-gesture-detector>
 </div>

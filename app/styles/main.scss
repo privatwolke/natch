@@ -1,8 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
+body { max-width:800px; }
+
 .tab-bar__content {
-	background:url(../images/bg.svg) center center no-repeat #ffbd1b;
-	background-size:100%;
+	background:url(../images/bg.jpg);
+	background-size:50px;
+}
+
+.navigation-bar--transparent {
+	background:#107f9a;
+	height:65px;
+	border-bottom:2px solid #0d6c82;
+	box-shadow:0 0 5px #0d6c82;
 }
 
 .page__content {
@@ -29,20 +38,32 @@
 .voter {
 
 	width:80%;
-	margin:0 auto;
+	margin:30px auto 0;
+	min-height:150px;
+	max-height:200px;
 	position:relative;
-	height:35%;
+	border:3px solid #87a6c3;
+	border-radius:12px;
+	background:#fff;
+	/*box-shadow:0 2px 0 #0d6c82;*/
 
 	.row {
 		position:absolute;
-		height:100%;
+		height:83%;
+		width:90%;
 		top:0;
 		transition:300ms all ease-out;
-		margin:0;
-		font-size:150%; font-weight:700;
+		margin:5%;
+		font-size:40px; font-weight:700;
+		font-family:'Enzo OT';
+		font-style:oblique;
+		color:#87a6c3;
 		background:#fff;
+
+		border-radius:24px;
+		border:2px dashed #87a6c3;
 		opacity:1;
-		border-top:3px solid #cf9714;
+
 	}
 
 	.row.back {
@@ -51,9 +72,37 @@
 		color:#000;
 		font-size:100%;
 	}
-	
+
 	.gone_left { margin-left:-150%; transition:200ms all ease-in; }
 	.gone_down { color:#fff; transition:150ms color ease-in; opacity:0; transition:200ms opacity ease-in; }
+}
+
+.voting-info {
+	color:#fff; background:rgba(0,0,0,.375); margin-top:30px; text-align:center; font-size:18px; padding:12px;
+	span {
+		margin-left:45%;display:inline-block;font-weight:700;font-style:oblique;font-family:'Enzo OT'
+	}
+}
+
+.voting-like-dislike {
+	text-align:center; margin-top:30px;
+	button {
+		background:#e6e6e6;
+		border-radius:100%;
+		width:100px;
+		height:100px;
+		border:4px solid;
+	}
+	.dislike {
+		border-color:#e35746;
+		color:#e35746;
+	}
+
+	.like {
+		border-color:#96bf83;
+		color:#96bf83;
+		margin-left:23%;
+	}
 }
 
 .favourites {

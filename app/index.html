@@ -21,10 +21,12 @@
   <body>
     <ons-page>
       <ons-toolbar modifier="transparent">
-        <div class="right" style="padding:5% 8%; color:#cf9714;"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
+        <div class="left" style="padding:4% 8%; color:#d0e4eb;"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
+        <div class="center" style="padding:3.5%; color:#d0e4eb;">natch</div>
+        <div class="right" style="padding:4% 8%; color:#d0e4eb;"><ons-icon icon="fa-star" size="2x"></ons-icon></div>
       </ons-toolbar>
 
-      <ons-tabbar animation="fade">
+      <ons-tabbar animation="fade" position="top" style="margin-top:-30px;">
         <ons-tab page="home.html">
           <span style="font-variant:small-caps;">favourites</span>
         </ons-tab>
@@ -38,26 +40,21 @@
     </ons-page>
 
     <ons-template id="home.html">
-      <img src="images/logo.svg" style="margin:15% auto; display:block; height:17%;">
-
       <natch-favourites></natch-favourites>
     </ons-template>
 
     <ons-template id="fav.html">
-      <img src="images/logo.svg" style="margin:15% auto; display:block; height:17%;">
-
       <natch-voter></natch-voter>
-      <natch-notification-area icon="'fa-info'" message="'Swipe left to like and up to remove.'"></natch-notification-area>
-
+      <!--<natch-notification-area icon="'fa-info'" message="'Swipe left to like and up to remove.'"></natch-notification-area>-->
     </ons-template>
 
     <ons-template id="settings.html">
-      <img src="images/logo.svg" style="margin:15% auto; display:block; height:17%;">
+      <img src="images/logo.svg" style="margin:15% auto 10%; display:block; height:17%;">
       <p style="background:#fff; width:80%; padding:4%; border-top:3px solid #cf9714; margin:0 auto;line-height:135%;">This page displays either the "decide together" connection thing or the found natches.</p>
     </ons-template>
 
     <script type="text/ng-template" id="notification.html">
-      <ons-row style="width:80%; background:#fff; margin:10% auto 0; height:12%; border-top:3px solid #cf9714;">
+      <ons-row style="border-radius:12px;width:80%; background:#fff; margin:10% auto 0; padding:3% 0 3.5%; border-top:3px solid #cf9714;">
         <ons-col width="48px" align="center">
           <ons-icon size="24px" fixed-width="true" icon="{{icon}}"></ons-icon>
         </ons-col>

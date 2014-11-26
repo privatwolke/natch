@@ -62,7 +62,10 @@ class window.Collection
 	all: ->
 		result = []
 		for id, record of @database.data[@name].records
-			result.push("id": id, "record": DBUtils.clone(@database.data[@name].records[id]))
+			result.push(
+				"id": id
+				"record": DBUtils.clone(@database.data[@name].records[id])
+			)
 
 		new RecordSet(result)
 
@@ -78,7 +81,10 @@ class window.Collection
 		for key of index
 			if funcFilter(key)
 				for id in index[key]
-					records.push("id": id, "record": DBUtils.clone(@database.data[@name].records[id]))
+					records.push(
+						"id": id
+						"record": DBUtils.clone(@database.data[@name].records[id])
+					)
 
 		return new RecordSet(records)
 

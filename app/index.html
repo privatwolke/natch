@@ -18,19 +18,22 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body>
+  <body ng-controller="AppController">
     <ons-page>
       <ons-toolbar modifier="transparent">
-        <div class="left" style="padding:4% 8%; color:#d0e4eb;"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
-        <div class="center" style="padding:3.5%; color:#d0e4eb;">natch</div>
-        <div class="right" style="padding:4% 8%; color:#d0e4eb;"><ons-icon icon="fa-star" size="2x"></ons-icon></div>
+        <div class="left" style="color:#d0e4eb;"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
+        <div class="center" style="color:#d0e4eb;">natch</div>
+        <div class="right" style="color:#d0e4eb;"><ons-icon icon="fa-star" size="2x"></ons-icon></div>
       </ons-toolbar>
 
       <ons-tabbar animation="fade" position="top" style="margin-top:-30px;">
         <ons-tab page="home.html">
           <span style="font-variant:small-caps;">favourites</span>
         </ons-tab>
-        <ons-tab page="fav.html" active="true">
+        <ons-tab page="fav.html">
+          <ons-icon icon="fa-random"></ons-icon>
+        </ons-tab>
+        <ons-tab page="conn.html" active="true">
           <ons-icon icon="fa-random"></ons-icon>
         </ons-tab>
         <ons-tab page="settings.html">
@@ -46,6 +49,10 @@
     <ons-template id="fav.html">
       <natch-voter></natch-voter>
       <!--<natch-notification-area icon="'fa-info'" message="'Swipe left to like and up to remove.'"></natch-notification-area>-->
+    </ons-template>
+
+    <ons-template id="conn.html">
+      <natch-connect></natch-connect>
     </ons-template>
 
     <ons-template id="settings.html">

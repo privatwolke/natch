@@ -1,7 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
-body { max-width:800px; }
-
 .tab-bar__content {
 	background:url(../images/bg.jpg);
 	background-size:50px;
@@ -9,9 +7,9 @@ body { max-width:800px; }
 
 .navigation-bar--transparent {
 	background:#107f9a;
-	height:65px;
 	border-bottom:2px solid #0d6c82;
 	box-shadow:0 0 5px #0d6c82;
+	padding:15px 15px 45px 15px;
 }
 
 .page__content {
@@ -19,7 +17,7 @@ body { max-width:800px; }
 }
 
 .tab-bar {
-	background:#333;
+	background:#107f9a;
 }
 
 :checked + .tab-bar__button {
@@ -49,11 +47,11 @@ body { max-width:800px; }
 
 	.row {
 		position:absolute;
-		height:83%;
-		width:90%;
+		height:100px;
+		width:80%;
 		top:0;
 		transition:300ms all ease-out;
-		margin:5%;
+		margin:30px;
 		font-size:40px; font-weight:700;
 		font-family:'Enzo OT';
 		font-style:oblique;
@@ -78,7 +76,7 @@ body { max-width:800px; }
 }
 
 .voting-info {
-	color:#fff; background:rgba(0,0,0,.375); margin-top:30px; text-align:center; font-size:18px; padding:12px;
+	color:#fff; background:rgba(0,0,0,.375); margin-top:30px; text-align:center; font-size:18px; padding:15px;
 	span {
 		margin-left:45%;display:inline-block;font-weight:700;font-style:oblique;font-family:'Enzo OT'
 	}
@@ -102,6 +100,29 @@ body { max-width:800px; }
 		border-color:#96bf83;
 		color:#96bf83;
 		margin-left:23%;
+	}
+}
+
+.question {
+	width:80%;
+	margin:30px auto 0;
+	background:#fff;
+	border:3px solid #87a6c3;
+	border-radius:12px;
+	padding:12px;
+
+	.row.heading {
+		font-size:140%;
+		font-weight:bold;
+	}
+
+	.row {
+		padding:12px;
+	}
+
+	button {
+		width:95%;
+		padding:12px;
 	}
 }
 

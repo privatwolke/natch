@@ -1,10 +1,19 @@
-<div class="voter">
+<div class="voter" ng-show="name.record.name">
 	<ons-gesture-detector ng-swipeleft="tearOff('left')" ng-swipeup="tearOff('down')">
 		<ons-row class="back"><ons-col align="center"><ons-icon size="80%" icon="fa-check"></ons-icon> {{message}}</ons-col></ons-row>
 		<ons-row ng-class="{gone_left: gone.left, gone_down: gone.down}">
 			<ons-col align="center">{{name.record.name}}</ons-col>
 		</ons-row>
 	</ons-gesture-detector>
+</div>
+
+<div class="question" ng-hide="name.record.name">
+	<ons-row class="heading">Brauchst du Hilfe?</ons-row>
+	<ons-row>Wenn du dich mit deinem Partner verknüpfst seht ihr welche Namen euch beiden gefallen.</ons-row>
+	<ons-row>
+		<ons-col><button>Nein</button></ons-col>
+		<ons-col><button>Ja</button></ons-col>
+	</ons-row>
 </div>
 
 <div class="voting-info"><ons-icon icon="fa-info"></ons-icon> <span>{{name.record.likes}} Likes</span></div>

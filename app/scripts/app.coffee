@@ -1,5 +1,91 @@
 app = angular.module "natchApp", ["ngAnimate", "ngTouch", "onsen"]
 
+app.controller "AppController", [
+	"$scope", "$http", "$db", ($scope, $http, $db) ->
+		prefs = $db.collection("preferences")
+
+		run = ->
+			$scope.preferences = {}
+			pp = prefs.all()
+			while p = pp.next()
+				$scope.preferences[p.record.name] = p.record.value
+
+		if prefs.all().length is 0
+
+			# register user
+			$http.post("http://127.0.0.1/user", "fb_userid=0absab&fb_token=0sdfbsd",
+				headers:
+					"Content-Type": "application/x-www-form-urlencoded"
+			).success((data, status, headers, config) ->
+				prefs.add(
+					name: "user_token"
+					value: data.token
+				)
+				prefs.add(
+					name: "user_fbuserid"
+					value: data.fb_userid
+				)
+				prefs.add(
+					name: "user_fbtoken"
+					value: data.fb_token
+				)
+				run()
+			)
+		else:
+			run()
+	]
+
+app.controller "ConnectController", [
+	"$scope", "$timeout", "$http", "$db", ($scope, $timeout, $http, $db) ->
+		$scope.connection =
+			active: false
+			code: "..."
+
+		$scope.inputCode = ""
+		token = $scope.preferences.user_token
+
+		$http.get("http://127.0.0.1/connection",
+			params:
+				token: token
+		).success((data, status, headers, config) ->
+			console.log(data)
+			$scope.connection.active = true
+			$scope.connection.name = data.fb_userid
+		).error((data, status, headers, config) ->
+			$scope.connection.active = false
+
+			$http.get("http://127.0.0.1/code",
+				params:
+					token: token
+			).success((data, status, headers, config) ->
+				$scope.connection.code = data.code
+				$scope.connection.codeValidUntil = data.validUntil
+			)
+
+		)
+
+		$scope.doConnect = ->
+			console.log "connecting with this code: ", $scope.inputCode
+			$http.post(
+				"http://127.0.0.1/connection",
+				"code=#{$scope.inputCode}",
+				headers:
+					"Content-Type": "application/x-www-form-urlencoded"
+				params:
+					token: token
+			).success((data, status, headers, config) ->
+					$scope.connection.active = true
+			)
+			
+	]
+
+app.directive "natchConnect", ->
+	restrict:     "E"
+	templateUrl:  "templates/connect.html"
+	controller:   "ConnectController"
+	controllerAs: "connectCtrl"
+
+
 app.controller "VoterController", [
 	"$scope", "$timeout", "$http", "$db", ($scope, $timeout, $http, $db) ->
 

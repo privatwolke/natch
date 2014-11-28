@@ -48,7 +48,6 @@ app.controller "ConnectController", [
 			params:
 				token: token
 		).success((data, status, headers, config) ->
-			console.log(data)
 			$scope.connection.active = true
 			$scope.connection.name = data.fb_userid
 		).error((data, status, headers, config) ->
@@ -65,7 +64,6 @@ app.controller "ConnectController", [
 		)
 
 		$scope.doConnect = ->
-			console.log "connecting with this code: ", $scope.inputCode
 			$http.post(
 				"http://127.0.0.1/connection",
 				"code=#{$scope.inputCode}",
@@ -76,7 +74,7 @@ app.controller "ConnectController", [
 			).success((data, status, headers, config) ->
 					$scope.connection.active = true
 			)
-			
+
 	]
 
 app.directive "natchConnect", ->
@@ -110,11 +108,20 @@ app.controller "VoterController", [
 
 			$scope.tearOff = (direction) ->
 				if $scope.name["id"]
-					$scope.name["record"]["status"] =
 					  if direction is "left"
-					    status.LIKED
-					  else
-					    status.DISLIKED
+					    newStatus = status.LIKED
+							# report back to server
+							$http.post("http://127.0.0.1/like", "nameid=#{$scope.name['id']}",
+								params:
+									token: $scope.preferences.user_token
+								headers:
+									"Content-Type": "application/x-www-form-urlencoded"
+							).success((data, status, headers, config) -> console.log data)
+
+						else
+					    newStatus = status.DISLIKED
+
+					$scope.name["record"]["status"] = newStatus
 
 					namesCollection.update($scope.name)
 					$scope.message = messages[direction]

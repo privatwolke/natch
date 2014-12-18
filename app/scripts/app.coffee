@@ -95,7 +95,7 @@ app.controller "VoterController", [
 
 		$scope.name = record : name: "Loading…"
 		$scope.gone =  left: false, down: false, right: false
-		messages = left: "Liked", down: "Removed", right: "Disliked"
+		messages = left: "Disliked", down: "Removed", right: "Liked"
 
 		window.namesCollection = $db.collection("names")
 
@@ -109,7 +109,7 @@ app.controller "VoterController", [
 
 			$scope.tearOff = (direction) ->
 				if $scope.name["id"]
-					  if direction is "left"
+					  if direction is "right"
 					    newStatus = status.LIKED
 							# report back to server
 							$http.post("http://127.0.0.1/like", "nameid=#{$scope.name['id']}",
@@ -119,7 +119,7 @@ app.controller "VoterController", [
 									"Content-Type": "application/x-www-form-urlencoded"
 							).success((data, status, headers, config) -> console.log data)
 
-						else if direction is "right"
+						else if direction is "left"
 					    newStatus = status.DISLIKED
 
 						else if direction is "down"
@@ -180,11 +180,11 @@ app.controller "FavouritesController", [
 		).sort(DatabaseFunctions.sortAscending("name")).list()
 
 		$scope.remove = (record) ->
-			#index = $scope.favourites.indexOf(record)
-			#record.record["status"] = "2"
-			#namesCollection.update(record)
+			index = $scope.favourites.indexOf(record)
+			record.record["status"] = "2"
+			namesCollection.update(record)
 
-			#$scope.$apply(($scope) -> $scope.favourites.splice(index, 1))
+			$scope.$apply(($scope) -> $scope.favourites.splice(index, 1))
 
 		$scope.isGone = (record) ->
 			#$scope.favourites.indexOf(record) != -1

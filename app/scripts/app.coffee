@@ -91,10 +91,11 @@ app.controller "VoterController", [
 			UNRATED:  "0"
 			LIKED:    "1"
 			DISLIKED: "2"
+			REMOVED:  "3"
 
 		$scope.name = record : name: "Loading…"
-		$scope.gone =  left: false, down: false
-		messages = left: "Liked", down: "Removed"
+		$scope.gone =  left: false, down: false, right: false
+		messages = left: "Liked", down: "Removed", right: "Disliked"
 
 		window.namesCollection = $db.collection("names")
 
@@ -118,8 +119,11 @@ app.controller "VoterController", [
 									"Content-Type": "application/x-www-form-urlencoded"
 							).success((data, status, headers, config) -> console.log data)
 
-						else
+						else if direction is "right"
 					    newStatus = status.DISLIKED
+
+						else if direction is "down"
+							newStatus = status.REMOVED
 
 					$scope.name["record"]["status"] = newStatus
 

@@ -9,7 +9,7 @@
 	<ons-row><input type="text" ng-model="inputCode" placeholder="Code einfügen" style="font:150% monospace; border:0;" /></ons-row>
 	<ons-row>
 		<ons-col><button>Abbrechen</button></ons-col>
-		<ons-col><button ng-click="doConnect()">Verbinden</button></ons-col>
+		<ons-col><input type="button" ng-click="doConnect()" value="Verbinden"/></ons-col>
 	</ons-row>
 </div>
 
@@ -22,7 +22,7 @@
 	<ons-row class="heading">Verbindung hergestellt</ons-row>
 	<ons-row>Du bist mit&nbsp;<b>{{connection.name}}</b>&nbsp;verbunden.</ons-row>
 	<ons-row>
-		<button>Verbindung entfernen</button>
+		<input type="button" value="Verbindung entfernen" ng-click="removeConnection()"/>
 	</ons-row>
 </div>
 

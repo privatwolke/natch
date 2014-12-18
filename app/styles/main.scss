@@ -40,7 +40,7 @@
 	min-height:150px;
 	max-height:200px;
 	position:relative;
-	border:3px solid #87a6c3;
+	border:3px solid transparent;
 	border-radius:12px;
 	background:#fff;
 	/*box-shadow:0 2px 0 #0d6c82;*/
@@ -51,7 +51,7 @@
 		width:80%;
 		top:0;
 		transition:300ms all ease-out;
-		margin:30px;
+		margin:27px 30px 30px;
 		font-size:40px; font-weight:700;
 		font-family:'Enzo OT';
 		font-style:oblique;
@@ -137,9 +137,8 @@
 	overflow:scroll;
 
 	li {
-		background:#fff;
+		background:rgba(255,255,255,1);
 		padding:4%;
 		margin-bottom:1.5%;
-		border-top:3px solid #cf9714;
 	}
 }

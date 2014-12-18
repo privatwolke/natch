@@ -1,5 +1,5 @@
 <ul class="favourites" ng-repeat="favourite in favourites">
-	<ons-gesture-detector ng-swipeleft="remove(favourite)">
+	<ons-gesture-detector ng-swipeleft="remove(favourite, this)">
 		<li ng-class="{gone_left: isGone(favourite)}">{{favourite.record.name}}</li>
 	</ons-gesture-detector>
 </ul>

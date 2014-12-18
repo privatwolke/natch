@@ -13,7 +13,7 @@ app.controller "AppController", [
 		if prefs.all().length is 0
 
 			# register user
-			$http.post("http://127.0.0.1/user", "fb_userid=0absab&fb_token=0sdfbsd",
+			$http.post("http://10.0.0.108/user", "fb_userid=0absab&fb_token=0sdfbsd",
 				headers:
 					"Content-Type": "application/x-www-form-urlencoded"
 			).success((data, status, headers, config) ->
@@ -44,7 +44,7 @@ app.controller "ConnectController", [
 		$scope.inputCode = ""
 		token = $scope.preferences.user_token
 
-		$http.get("http://127.0.0.1/connection",
+		$http.get("http://10.0.0.108/connection",
 			params:
 				token: token
 		).success((data, status, headers, config) ->
@@ -53,7 +53,7 @@ app.controller "ConnectController", [
 		).error((data, status, headers, config) ->
 			$scope.connection.active = false
 
-			$http.get("http://127.0.0.1/code",
+			$http.get("http://10.0.0.108/code",
 				params:
 					token: token
 			).success((data, status, headers, config) ->
@@ -65,7 +65,7 @@ app.controller "ConnectController", [
 
 		$scope.doConnect = ->
 			$http.post(
-				"http://127.0.0.1/connection",
+				"http://10.0.0.108/connection",
 				"code=#{$scope.inputCode}",
 				headers:
 					"Content-Type": "application/x-www-form-urlencoded"
@@ -73,6 +73,16 @@ app.controller "ConnectController", [
 					token: token
 			).success((data, status, headers, config) ->
 					$scope.connection.active = true
+			)
+
+		$scope.removeConnection = ->
+			$scope.connection.active = false
+			$http.delete(
+				"http://10.0.0.108/connection",
+				params:
+					token: token
+			).success((data, status, headers, config) ->
+					$scope.connection.active = false
 			)
 
 	]
@@ -112,7 +122,7 @@ app.controller "VoterController", [
 					  if direction is "right"
 					    newStatus = status.LIKED
 							# report back to server
-							$http.post("http://127.0.0.1/like", "nameid=#{$scope.name['id']}",
+							$http.post("http://10.0.0.108/like", "nameid=#{$scope.name['id']}",
 								params:
 									token: $scope.preferences.user_token
 								headers:
@@ -180,6 +190,7 @@ app.controller "FavouritesController", [
 		).sort(DatabaseFunctions.sortAscending("name")).list()
 
 		$scope.remove = (record) ->
+			console.log arguments
 			index = $scope.favourites.indexOf(record)
 			record.record["status"] = "2"
 			namesCollection.update(record)

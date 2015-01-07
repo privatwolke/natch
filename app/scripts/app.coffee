@@ -117,7 +117,7 @@ app.controller "VoterController", [
 
 			$scope.name = names.next()
 
-			$scope.tearOff = (direction) ->
+			$scope.tearOff = (direction, fromswipe = false) ->
 				if $scope.name["id"]
 					  if direction is "right"
 					    newStatus = status.LIKED
@@ -140,11 +140,14 @@ app.controller "VoterController", [
 					namesCollection.update($scope.name)
 					$scope.message = messages[direction]
 
-				$scope.$apply(($scope) -> $scope.gone[direction] = true)
-				$timeout(->
+				if fromswipe
+					$scope.$apply(($scope) -> $scope.gone[direction] = true)
+					$timeout(->
+						$scope.name = names.next()
+						$scope.$apply(($scope) -> $scope.gone[direction] = false)
+					, 500)
+				else
 					$scope.name = names.next()
-					$scope.$apply(($scope) -> $scope.gone[direction] = false)
-				, 500)
 
 		if namesCollection.all().length is 0
 			# the collection is empty, create indices
@@ -190,16 +193,14 @@ app.controller "FavouritesController", [
 		).sort(DatabaseFunctions.sortAscending("name")).list()
 
 		$scope.remove = (record) ->
-			console.log arguments
 			index = $scope.favourites.indexOf(record)
 			record.record["status"] = "2"
 			namesCollection.update(record)
 
-			$scope.$apply(($scope) -> $scope.favourites.splice(index, 1))
+			$scope.favourites.splice(index, 1)
 
 		$scope.isGone = (record) ->
-			#$scope.favourites.indexOf(record) != -1
-			false
+			return $scope.favourites.indexOf(record) != -1
 
 	]
 

@@ -35,23 +35,20 @@
 
 .voter {
 
-	width:80%;
+	width:70%;
 	margin:30px auto 0;
-	min-height:150px;
-	max-height:200px;
+	height:90px;
 	position:relative;
-	border:3px solid transparent;
+	border:30px solid #fff;
 	border-radius:12px;
 	background:#fff;
 	/*box-shadow:0 2px 0 #0d6c82;*/
 
 	.row {
-		position:absolute;
+		position:relative;
 		height:100px;
-		width:80%;
-		top:0;
+		top:-100px;
 		transition:300ms all ease-out;
-		margin:27px 30px 30px;
 		font-size:40px; font-weight:700;
 		font-family:'Enzo OT';
 		font-style:oblique;
@@ -69,6 +66,7 @@
 		border:0;
 		color:#000;
 		font-size:100%;
+		top:0;
 	}
 
 	.gone_left { margin-left:-150%; transition:200ms all ease-in; }

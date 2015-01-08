@@ -212,15 +212,18 @@ app.controller "FavouritesController", [
 			(key) -> key is "1"
 		).sort(DatabaseFunctions.sortAscending("name")).list()
 
+		deletedRecords = []
+
 		$scope.remove = (record) ->
 			index = $scope.favourites.indexOf(record)
 			record.record["status"] = "2"
 			namesCollection.update(record)
+			deletedRecords.push(record)
 
-			$timeout(-> $scope.favourites.splice(index, 1))
+			$timeout((-> $scope.favourites.splice(index, 1)),100)
 
 		$scope.isGone = (record) ->
-			return $scope.favourites.indexOf(record) != -1
+			return deletedRecords.indexOf(record) != -1
 
 	]
 

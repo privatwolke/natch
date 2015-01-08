@@ -1,5 +1,30 @@
-<ul class="favourites">
-	<ons-gesture-detector ng-swipeleft="remove(favourite, this)" ng-repeat="favourite in favourites">
-		<li ng-class="{gone_left: isGone(favourite)}">{{favourite.record.name}}</li>
-	</ons-gesture-detector>
-</ul>
+<ons-tabbar position="top" style="margin-top:66px;">
+  <ons-tab page="meine.html" active="true" label="Meine Favouriten"></ons-tab>
+  <ons-tab page="unsere.html" label="Unsere Natches"></ons-tab>
+</ons-tabbar>
+
+<ons-template id="meine.html">
+	<ons-page>
+		<p style="text-align:center; margin-top:15px;">Du hast bereits {{favourites.length}} Namen in deiner Liste!</p>
+		<ons-scroller>
+		<ul class="favourites">
+			<ons-gesture-detector ng-swipeleft="remove(favourite, this)" ng-repeat="favourite in favourites">
+				<li ng-class="{gone_left: isGone(favourite)}">{{favourite.record.name}}</li>
+			</ons-gesture-detector>
+		</ul>
+		</ons-scroller>
+	</ons-page>
+</ons-template>
+
+<ons-template id="unsere.html">
+	<ons-page>
+		<p style="text-align:center; margin-top:15px;">Ihr habt bereits {{natches.length}} Namen in eurer Liste!</p>
+		<ons-scroller>
+		<ul class="favourites">
+			<ons-gesture-detector ng-swipeleft="remove(natch, this)" ng-repeat="natch in natches">
+				<li ng-class="{gone_left: isGone(natch)}">{{natch.record.name}}</li>
+			</ons-gesture-detector>
+		</ul>
+		</ons-scroller>
+	</ons-page>
+</ons-template>

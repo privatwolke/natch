@@ -19,44 +19,30 @@
     <!-- endbuild -->
   </head>
   <body ng-controller="AppController">
-    <ons-page>
-      <ons-toolbar modifier="transparent">
-        <div class="left" style="color:#d0e4eb;" ng-click="tabbar.setActiveTab(2)"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
-        <div class="center" style="color:#d0e4eb;" ng-click="tabbar.setActiveTab(1)">natch</div>
-        <div class="right" style="color:#d0e4eb;" ng-click="tabbar.setActiveTab(0)"><ons-icon icon="fa-star" size="2x"></ons-icon></div>
-      </ons-toolbar>
+    <ons-toolbar modifier="transparent">
+      <div class="left" style="color:#d0e4eb;" ng-click="navi.pushPage('conn.html')"><ons-icon icon="fa-cog" size="2x"></ons-icon></div>
+      <div class="center" style="color:#d0e4eb;" ng-click="navi.resetToPage('fav.html')">natch</div>
+      <div class="right" style="color:#d0e4eb;" ng-click="navi.pushPage('home.html')"><ons-icon icon="fa-star" size="2x"></ons-icon></div>
+    </ons-toolbar>
 
-      <ons-tabbar var="tabbar" animation="fade" position="top" style="margin-top:-50px;">
-        <ons-tab page="home.html">
-          <span style="font-variant:small-caps;">favourites</span>
-        </ons-tab>
-        <ons-tab page="fav.html" active="true">
-          <ons-icon icon="fa-random"></ons-icon>
-        </ons-tab>
-        <ons-tab page="conn.html">
-          <ons-icon icon="fa-random"></ons-icon>
-        </ons-tab>
-        <ons-tab page="settings.html">
-          <span style="font-variant:small-caps;">natches <span style="font-size:75%; color:#000;border-radius:10px; background:#fff; margin-left:2px; margin-right:5px; padding:2px 5px;">22</span></span>
-        </ons-tab>
-      </ons-tabbar>
-    </ons-page>
+    <ons-navigator var="navi" animation="fade" page="fav.html"></ons-navigator>
 
     <ons-template id="home.html">
-      <natch-favourites></natch-favourites>
+      <ons-page>
+        <natch-favourites></natch-favourites>
+      </ons-page>
     </ons-template>
 
     <ons-template id="fav.html">
-      <natch-voter></natch-voter>
-      <!--<natch-notification-area icon="'fa-info'" message="'Swipe left to like and up to remove.'"></natch-notification-area>-->
+      <ons-page>
+        <natch-voter></natch-voter>
+      </ons-page>
     </ons-template>
 
     <ons-template id="conn.html">
-      <natch-connect></natch-connect>
-    </ons-template>
-
-    <ons-template id="settings.html">
-
+      <ons-page>
+        <natch-connect></natch-connect>
+      </ons-page>
     </ons-template>
 
     <script type="text/ng-template" id="notification.html">

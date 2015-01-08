@@ -1,5 +1,5 @@
 <div class="voter" ng-show="name.record.name">
-	<ons-gesture-detector ng-swipeleft="tearOff('left', true)" ng-swipeup="tearOff('down', true)" ng-swiperight="tearOff('right', true)">
+	<ons-gesture-detector ng-swipeleft="tearOff('left', true)" ng-swipeup="tearOff('down', true)" ng-swiperight="tearOff('right', true)" style="height:100px;">
 		<ons-row class="back"><ons-col align="center"><ons-icon size="80%" icon="fa-check"></ons-icon> {{message}}</ons-col></ons-row>
 		<ons-row ng-class="{gone_left: gone.left, gone_down: gone.down, gone_right: gone.right}">
 			<ons-col align="center">{{name.record.name}}</ons-col>
@@ -16,7 +16,7 @@
 	</ons-row>
 </div>
 
-<div class="voting-info"><ons-icon icon="fa-info"></ons-icon> <span>{{name.record.likes}} Likes</span></div>
+<div class="voting-info"><a style="color:#fff;" href="http://de.wikipedia.org/wiki/{{name.record.name}}"><ons-icon icon="fa-info"></ons-icon></a> <span>{{name.record.likes}} Likes</span></div>
 
 <div class="voting-like-dislike">
 	<ons-gesture-detector ng-click="tearOff('left')" style="display:inline;">

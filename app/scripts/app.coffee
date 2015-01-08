@@ -4,6 +4,8 @@ app.controller "AppController", [
 	"$scope", "$http", "$db", ($scope, $http, $db) ->
 		prefs = $db.collection("preferences")
 
+		$scope.show_prefs = -> ons.createDialog("connect.html").then((dialog) -> dialog.show())
+
 		run = ->
 			$scope.preferences = {}
 			pp = prefs.all()
@@ -130,6 +132,7 @@ app.controller "VoterController", [
 			).shuffle()
 
 			$scope.name = names.next()
+			$scope.name.record.likes = Math.floor(Math.random()*150)
 
 			$scope.tearOff = (direction, fromswipe = false) ->
 				if $scope.name["id"]
@@ -160,10 +163,12 @@ app.controller "VoterController", [
 					$scope.$apply(($scope) -> $scope.gone[direction] = true)
 					$timeout(->
 						$scope.name = names.next()
+						$scope.name.record.likes = Math.floor(Math.random()*150)
 						$scope.$apply(($scope) -> $scope.gone[direction] = false)
 					, 500)
 				else
 					$scope.name = names.next()
+					$scope.name.record.likes = Math.floor(Math.random()*150)
 
 		if namesCollection.all().length is 0
 			# the collection is empty, create indices

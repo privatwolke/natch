@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
-.tab-bar__content {
-	background:url(../images/bg.jpg);
+ons-navigator, ons-page.page {
+	background:url(../images/bg.jpg) !important;
 	background-size:50px;
 }
 
@@ -37,7 +37,7 @@
 .voter {
 
 	width:70%;
-	margin:30px auto 0;
+	margin:80px auto 0;
 	height:90px;
 	position:relative;
 	border:30px solid #fff;

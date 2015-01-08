@@ -1,4 +1,4 @@
-<div class="voter-back" ng-class="{disliked: gone.left, liked: gone.right}">
+<div class="voter-back">
 	<div class="voter" ng-show="name.record.name" ng-class="{boy: is_boy(), girl: is_girl(), gone_left: gone.left, gone_down: gone.down, gone_right: gone.right}">
 		<ons-gesture-detector ng-swipeleft="tearOff('left', true)" ng-swipeup="tearOff('down', true)" ng-swiperight="tearOff('right', true)" style="height:100%;">
 			<ons-row>
@@ -26,7 +26,7 @@
 	<span class="right">{{name.record.likes}} Likes</span>
 </div>
 
-<div class="voting-like-dislike">
+<div class="voting-like-dislike" ng-class="{disliked: gone.left, liked: gone.right}">
 	<ons-gesture-detector ng-click="tearOff('left')" style="display:inline;">
 		<button class="dislike"><ons-icon size="3x" icon="fa-thumbs-down"></ons-icon></button>
 	</ons-gesture-detector>

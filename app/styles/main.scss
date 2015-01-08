@@ -64,15 +64,8 @@ ons-navigator, ons-page.page {
 	height:50%;
 }
 
-.voter-back.liked {
-	background:url("../images/like.svg") center center no-repeat;
-	background-size:75%;
-}
-
-.voter-back.disliked {
-	background:url("../images/nope.svg") center center no-repeat;
-	background-size:75%;
-}
+.liked { .like { box-shadow:#60ae3c 0 0 12px; transition:400ms all; background:#fefefe; color:#70c14b !important; } }
+.disliked { .dislike { box-shadow:#e35746 0 0 12px; transition:400ms all; background:#fefefe; } }
 
 .gone_left { left:-1000px; transition:200ms all ease-in; }
 .gone_right { right:-1000px; transition:200ms all ease-in; }

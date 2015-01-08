@@ -55,8 +55,9 @@ app.controller "ConnectController", [
 
 		$scope.prefs =
 			male: true,
-			female: true
+			female: true,
 			maxlength: 100
+			minlength: 20
 
 		$http.get("http://www.breibox.at/natch/api/connection",
 			params:

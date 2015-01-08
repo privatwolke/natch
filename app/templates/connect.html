@@ -30,9 +30,16 @@
 <div class="question">
 	<ons-row class="heading">Einstellungen</ons-row>
 	<ons-row>Hallo {{preferences.name}}!</ons-row>
+    <ons-row><label for="name">Dein Name</label><input type="text" id="name" ng-model="prefs.name"></ons-row>
 	<ons-row>
 		<input type="checkbox" id="gender-male" ng-model="prefs.male"><label for="gender-male">männliche Namen</label><br/>
 		<input type="checkbox" id="gender-female" ng-model="prefs.female"><label for="gender-female">weibliche Namen</label><br/>
 	</ons-row>
-	<ons-row><input type="number" id="length" ng-model="prefs.maxlength" style="width:50px;">&nbsp;<label for="length">maximale Länge</label></ons-row>
+    <ons-row><input type="number" id="maxlength" ng-model="prefs.maxlength" style="width:50px;">&nbsp;<label for="maxlength">maximale Länge</label></ons-row>
+    <ons-row><input type="number" id="minlength" ng-model="prefs.minlength" style="width:50px;">&nbsp;<label for="minlength">minimale Länge</label></ons-row>
+    <ons-row>
+        <ons-col class="range-wrapper">
+            <input type="range" min="3" max="20" value="10" class="range">
+        </ons-col>
+    </ons-row>
 </div>

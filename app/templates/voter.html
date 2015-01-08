@@ -1,4 +1,4 @@
-<div class="voter" ng-show="name.record.name">
+<div class="voter" ng-show="name.record.name" ng-class="{boy: is_boy(), girl: is_girl()}">
 	<ons-gesture-detector ng-swipeleft="tearOff('left', true)" ng-swipeup="tearOff('down', true)" ng-swiperight="tearOff('right', true)" style="height:100px;">
 		<ons-row class="back"><ons-col align="center"><ons-icon size="80%" icon="fa-check"></ons-icon> {{message}}</ons-col></ons-row>
 		<ons-row ng-class="{gone_left: gone.left, gone_down: gone.down, gone_right: gone.right}">

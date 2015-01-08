@@ -124,6 +124,9 @@ app.controller "VoterController", [
 
 		window.namesCollection = $db.collection("names")
 
+		$scope.is_girl = -> $scope.name.record.gender is 2
+		$scope.is_boy = -> $scope.name.record.gender is 1
+
 		run = ->
 			names = namesCollection.query(
 				"status",
@@ -158,16 +161,12 @@ app.controller "VoterController", [
 					namesCollection.update($scope.name)
 					$scope.message = messages[direction]
 
-				if fromswipe
-					$scope.$apply(($scope) -> $scope.gone[direction] = true)
-					$timeout(->
-						$scope.name = names.next()
-						$scope.name.record.likes = Math.floor(Math.random()*150)
-						$scope.$apply(($scope) -> $scope.gone[direction] = false)
-					, 500)
-				else
+				$timeout((-> $scope.gone[direction] = true))
+				$timeout(->
 					$scope.name = names.next()
 					$scope.name.record.likes = Math.floor(Math.random()*150)
+					$scope.gone[direction] = false
+				, 500)
 
 		if namesCollection.all().length is 0
 			# the collection is empty, create indices

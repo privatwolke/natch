@@ -6,7 +6,7 @@ ons-navigator, ons-page.page {
 }
 
 .navigation-bar--transparent {
-	background:#107f9a;
+	background:#fff;
 	border-bottom:2px solid #0d6c82;
 	box-shadow:0 0 5px #0d6c82;
 	padding:15px 15px 45px 15px;
@@ -29,6 +29,9 @@ ons-navigator, ons-page.page {
 .row .col { text-align:center; }
 
 
+.boy, .boy .row { border-color:#107f99 !important; transition:200ms all ease-in; color:#107f99; }
+.girl, .girl .row { border-color:#cc527f !important; transition:200ms all ease-in; color:#cc527f; }
+
 .voter {
 
 	width:70%;
@@ -36,8 +39,10 @@ ons-navigator, ons-page.page {
 	height:90px;
 	position:relative;
 	border:30px solid #fff;
-	border-radius:12px;
+	border-radius:24px;
 	background:#fff;
+	border:2px solid transparent;
+	padding:20px 15px;
 	/*box-shadow:0 2px 0 #0d6c82;*/
 
 	.row {
@@ -48,7 +53,6 @@ ons-navigator, ons-page.page {
 		font-size:40px; font-weight:700;
 		font-family:'Enzo OT';
 		font-style:oblique;
-		color:#87a6c3;
 		background:#fff;
 
 		border-radius:24px;
@@ -76,8 +80,6 @@ ons-navigator, ons-page.page {
 		margin-left:45%;display:inline-block;font-weight:700;font-style:oblique;font-family:'Enzo OT', sans-serif;
 	}
 }
-
-.navigation-bar { padding:5px; }
 
 .voting-like-dislike {
 	text-align:center; margin-top:30px;

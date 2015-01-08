@@ -4,8 +4,6 @@ app.controller "AppController", [
 	"$scope", "$http", "$db", ($scope, $http, $db) ->
 		prefs = $db.collection("preferences")
 
-		$scope.show_prefs = -> ons.createDialog("connect.html").then((dialog) -> dialog.show())
-
 		run = ->
 			$scope.preferences = {}
 			pp = prefs.all()
@@ -218,7 +216,7 @@ app.controller "FavouritesController", [
 			record.record["status"] = "2"
 			namesCollection.update(record)
 
-			$scope.favourites.splice(index, 1)
+			$timeout(-> $scope.favourites.splice(index, 1))
 
 		$scope.isGone = (record) ->
 			return $scope.favourites.indexOf(record) != -1

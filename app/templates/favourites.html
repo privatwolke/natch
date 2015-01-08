@@ -9,7 +9,7 @@
 		<ons-scroller>
 		<ul class="favourites">
 			<ons-gesture-detector ng-swipeleft="remove(favourite, this)" ng-repeat="favourite in favourites">
-				<li ng-class="{gone_left: isGone(favourite)}">{{favourite.record.name}}</li>
+				<li ng-class="{gone_left: favourite.deleted, removed: favourite.removed}">{{favourite.record.name}}<span ng-click="remove(favourite, this)">×</span></li>
 			</ons-gesture-detector>
 		</ul>
 		</ons-scroller>
@@ -22,7 +22,7 @@
 		<ons-scroller>
 		<ul class="favourites">
 			<ons-gesture-detector ng-swipeleft="remove(natch, this)" ng-repeat="natch in natches">
-				<li ng-class="{gone_left: isGone(natch)}">{{natch.record.name}}</li>
+				<li ng-class="{gone_left: natch.deleted}">{{natch.record.name}}<span ng-click="remove(natch, this)">×</span></li>
 			</ons-gesture-detector>
 		</ul>
 		</ons-scroller>

@@ -20,10 +20,6 @@ ons-navigator, ons-page.page {
 	background:transparent;
 }
 
-:checked + .tab-bar__button {
-	color:#f1b729;
-}
-
 .page {
 	font-family:"Lato", "Roboto", "Droid Sans", Helvetica, Arial, sans-serif;
 	font-weight:400;
@@ -139,5 +135,15 @@ ons-navigator, ons-page.page {
 		background:rgba(255,255,255,1);
 		padding:15px;
 		margin:15px;
+
+		span {
+			float:right;
+		}
 	}
+
+	.removed { height:0; opacity:0; transition:200ms all ease-in; }
+
+	.gone_left { margin-left:-150%; transition:200ms all ease-in; }
+	.gone_right { margin-left:150%; transition:200ms all ease-in; }
+	.gone_down { color:#fff; transition:150ms color ease-in; opacity:0; transition:200ms opacity ease-in; }
 }

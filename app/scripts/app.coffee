@@ -214,17 +214,14 @@ app.controller "FavouritesController", [
 
 		deletedRecords = []
 
-		$scope.remove = (record) ->
+		$scope.remove = (record, element) ->
 			index = $scope.favourites.indexOf(record)
 			record.record["status"] = "2"
 			namesCollection.update(record)
-			deletedRecords.push(record)
 
-			$timeout((-> $scope.favourites.splice(index, 1)),100)
-
-		$scope.isGone = (record) ->
-			return deletedRecords.indexOf(record) != -1
-
+			$timeout(-> record.deleted = true)
+			$timeout((-> record.removed = true), 350)
+			$timeout((-> $scope.favourites.splice(index, 1)), 1000)
 	]
 
 app.directive "natchFavourites", ->

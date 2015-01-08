@@ -5,11 +5,11 @@
 
 <ons-template id="meine.html">
 	<ons-page>
-		<p style="text-align:center; margin-top:15px;">Du hast bereits {{favourites.length}} Namen in deiner Liste!</p>
+		<p style="text-align:center; margin-top:15px;">Dir gefallen {{favourites.length}} Namen!</p>
 		<ons-scroller>
 		<ul class="favourites">
 			<ons-gesture-detector ng-swipeleft="remove(favourite, this)" ng-repeat="favourite in favourites">
-				<li ng-class="{gone_left: favourite.deleted, removed: favourite.removed}">{{favourite.record.name}}<span ng-click="remove(favourite, this)">×</span></li>
+				<li ng-class="{gone_left: favourite.deleted, removed: favourite.removed, boy: favourite.record.gender == 1, girl: favourite.record.gender == 2}">{{favourite.record.name}}<span ng-click="remove(favourite, this)">×</span></li>
 			</ons-gesture-detector>
 		</ul>
 		</ons-scroller>
@@ -18,7 +18,7 @@
 
 <ons-template id="unsere.html">
 	<ons-page>
-		<p style="text-align:center; margin-top:15px;">Ihr habt bereits {{natches.length}} Namen in eurer Liste!</p>
+		<p style="text-align:center; margin-top:15px;">Ihr habt {{natches.length}} gemeinsame Namen in gefunden!</p>
 		<ons-scroller>
 		<ul class="favourites">
 			<ons-gesture-detector ng-swipeleft="remove(natch, this)" ng-repeat="natch in natches">

@@ -56,8 +56,8 @@ app.controller "ConnectController", [
 		$scope.prefs =
 			male: true,
 			female: true,
-			maxlength: 100
-			minlength: 20
+			maxlength: 10
+			minlength: 3
 
 		$http.get("http://www.breibox.at/natch/api/connection",
 			params:
@@ -99,6 +99,10 @@ app.controller "ConnectController", [
 			).success((data, status, headers, config) ->
 					$scope.connection.active = false
 			)
+
+		$scope.checkMinMax = (type) ->
+			$scope.prefs.maxlength = $scope.prefs.minlength  if type is "min" and parseInt($scope.prefs.minlength) > parseInt($scope.prefs.maxlength)
+			$scope.prefs.minlength = $scope.prefs.maxlength  if type is "max" and parseInt($scope.prefs.maxlength) < parseInt($scope.prefs.minlength)
 
 	]
 

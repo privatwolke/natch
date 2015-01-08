@@ -153,3 +153,10 @@ ons-navigator, ons-page.page {
 	.gone_right { margin-left:150%; transition:200ms all ease-in; }
 	.gone_down { color:#fff; transition:150ms color ease-in; opacity:0; transition:200ms opacity ease-in; }
 }
+
+.range-wrapper {
+  .range {
+      margin-top: 7px;
+      width: 100%;
+  }
+}

@@ -1,38 +1,33 @@
 
-
-
-<div class="question">
-    <ons-row class="heading">Einstellungen</ons-row>
-    <ons-row>Hallo {{preferences.name}}!</ons-row>
-    <ons-row><label for="name">Dein Name</label><input type="text" id="name" ng-model="prefs.name"></ons-row>
-    <ons-row>
-        <input type="checkbox" id="gender-male" ng-model="prefs.male"><label for="gender-male">männliche
-        Namen</label><br/>
-        <input type="checkbox" id="gender-female" ng-model="prefs.female"><label for="gender-female">weibliche
-        Namen</label><br/>
-    </ons-row>
-    <ons-row><input type="number" id="maxlength" ng-model="prefs.maxlength" style="width:50px;">&nbsp;<label
-            for="maxlength">maximale Länge</label></ons-row>
-    <ons-row><input type="number" id="minlength" ng-model="prefs.minlength" style="width:50px;">&nbsp;<label
-            for="minlength">minimale Länge</label></ons-row>
-    <ons-row>
-        <ons-col class="range-wrapper">
-            <input type="range" min="3" max="20" value="10" class="range">
-        </ons-col>
-
-        <section data-range-slider ng-model="range" min="minValue" max="maxValue"></section>
-    </ons-row>
-    <ons-row>
-        <div slider ng-model="range"></div>
-    </ons-row>
-</div>
-
 <div>
+    <ons-row class="heading">Einstellungen</ons-row>
+
     <ons-list>
+
+        <ons-list-header></ons-list-header>
+
         <ons-list-item>
             <ons-icon icon="fa-user"></ons-icon>
             Meinen Namen hinzufügen:
             <input type="text" id="name" ng-model="prefs.name">
+        </ons-list-item>
+
+        <ons-list-item>
+            <ons-row>
+                Namenlänge&nbsp;<span ng-show="prefs.minlength != prefs.maxlength">{{prefs.minlength}} - {{prefs.maxlength}}</span>
+                           <span ng-show="prefs.minlength == prefs.maxlength">{{prefs.minlength}}</span>
+                &nbsp;Zeichen
+            </ons-row>
+            <ons-row>
+                <ons-col class="range-wrapper">
+                    <input type="range" min="3" max="10" class="range" ng-model="prefs.minlength" ng-change="checkMinMax('min')" >
+                </ons-col>
+            </ons-row>
+            <ons-row>
+                <ons-col class="range-wrapper">
+                    <input type="range" min="3" max="10" class="range" ng-model="prefs.maxlength" ng-change="checkMinMax('max')">
+                </ons-col>
+            </ons-row>
         </ons-list-item>
 
         <ons-list-header></ons-list-header>
@@ -40,6 +35,7 @@
         <ons-list-item modifier="tappable">
             <label class="checkbox checkbox--noborder checkbox--list-item" for="gender-male">
                 <input type="checkbox" id="gender-male" ng-model="prefs.male">
+
                 <div class="checkbox__checkmark checkbox--noborder__checkmark checkbox--list-item__checkmark"></div>
                 männliche Namen
             </label>
@@ -47,6 +43,7 @@
         <ons-list-item modifier="tappable">
             <label class="checkbox checkbox--noborder checkbox--list-item" for="gender-female">
                 <input type="checkbox" id="gender-female" ng-model="prefs.female">
+
                 <div class="checkbox__checkmark checkbox--noborder__checkmark checkbox--list-item__checkmark"></div>
                 weibliche Namen
             </label>
@@ -55,7 +52,7 @@
         <!-- BEGIN NO CONNECTION -->
 
         <ons-list-header></ons-list-header>
-        <div class="question" ng-hide="connection.active">
+        <ons-list-item ng-hide="connection.active" class="question">
             <ons-row class="heading">Verbindung herstellen</ons-row>
             <ons-row>Diesen Code kannst du deinem Partner geben:</ons-row>
             <ons-row><code style="font-weight:bold; font-size:150%;">{{connection.code}}</code></ons-row>
@@ -66,20 +63,20 @@
             <ons-row>
                 <ons-col><input type="button" ng-click="doConnect()" value="Verbinden"/></ons-col>
             </ons-row>
-        </div>
+        </ons-list-item>
 
         <!-- END NO CONNECTION -->
 
 
         <!-- BEGIN CONNECTION IS ACTIVE -->
 
-        <div class="question" ng-show="connection.active">
+        <ons-list-item ng-show="connection.active" class="question">
             <ons-row class="heading">Verbindung hergestellt</ons-row>
             <ons-row>Du bist mit&nbsp;<b>{{connection.name}}</b>&nbsp;verbunden.</ons-row>
             <ons-row>
                 <input type="button" value="Verbindung entfernen" ng-click="removeConnection()"/>
             </ons-row>
-        </div>
+        </ons-list-item>
 
         <!-- END CONNECTION IS ACTIVE -->
 

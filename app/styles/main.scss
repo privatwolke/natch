@@ -3,6 +3,7 @@
 ons-navigator, ons-page.page {
 	background:url(../images/bg.jpg) !important;
 	background-size:50px !important;
+	margin-top:19px;
 }
 
 .navigation-bar--transparent {
@@ -35,54 +36,66 @@ ons-navigator, ons-page.page {
 .voter {
 
 	width:70%;
-	margin:80px auto 0;
-	height:90px;
-	position:relative;
+	margin:50px auto 0;
+	height:28%;
+	position:fixed;
+	right:-35%;
+	left:-35%;
 	border:30px solid #fff;
+	padding:30px;
 	border-radius:24px;
 	background:#fff;
 	border:2px solid transparent;
-	padding:20px 15px;
-	/*box-shadow:0 2px 0 #0d6c82;*/
 
 	.row {
-		position:relative;
-		height:100px;
-		top:-100px;
-		transition:300ms all ease-out;
+		transition:300ms border color ease-out;
 		font-size:40px; font-weight:700;
 		font-family:'Enzo OT';
 		font-style:oblique;
 		background:#fff;
-
 		border-radius:24px;
 		border:2px dashed #87a6c3;
 		opacity:1;
-
+		height:100%;
 	}
-
-	.row.back {
-		background:transparent;
-		border:0;
-		color:#000;
-		font-size:100%;
-		top:0;
-	}
-
-	.gone_left { margin-left:-150%; transition:200ms all ease-in; }
-	.gone_right { margin-left:150%; transition:200ms all ease-in; }
-	.gone_down { color:#fff; transition:150ms color ease-in; opacity:0; transition:200ms opacity ease-in; }
 }
 
+.voter-back {
+	height:50%;
+}
+
+.voter-back.liked {
+	background:url("../images/like.svg") center center no-repeat;
+	background-size:75%;
+}
+
+.voter-back.disliked {
+	background:url("../images/nope.svg") center center no-repeat;
+	background-size:75%;
+}
+
+.gone_left { left:-1000px; transition:200ms all ease-in; }
+.gone_right { right:-1000px; transition:200ms all ease-in; }
+.gone_down { color:#fff; transition:150ms color ease-in; opacity:0; transition:200ms opacity ease-in; }
+
 .voting-info {
-	color:#fff; background:rgba(0,0,0,.375); margin-top:30px; text-align:center; font-size:18px; padding:15px;
+	position:fixed;
+	bottom:128px;
+	width:100%;
+	text-align:center;
+	color:#fff; background:#107f99; text-align:center; font-size:18px; padding:12px;
 	span {
-		margin-left:45%;display:inline-block;font-weight:700;font-style:oblique;font-family:'Enzo OT', sans-serif;
+		font-weight:700;font-style:oblique;font-family:'Enzo OT', sans-serif;
 	}
+	.left { float:left; padding-left:70px; }
+	.right { float:right; padding-right:70px; }
 }
 
 .voting-like-dislike {
 	text-align:center; margin-top:30px;
+	position:fixed;
+	bottom:12px;
+	width:100%;
 	button {
 		background:#e6e6e6;
 		border-radius:100%;
@@ -90,14 +103,17 @@ ons-navigator, ons-page.page {
 		height:100px;
 		border:4px solid;
 	}
+	button:active {
+		outline:none;
+	}
 	.dislike {
 		border-color:#e35746;
 		color:#e35746;
 	}
 
 	.like {
-		border-color:#96bf83;
-		color:#96bf83;
+		border-color:#60ae3c;
+		color:#60ae3c;
 		margin-left:23%;
 	}
 }

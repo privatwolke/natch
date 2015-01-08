@@ -1,10 +1,11 @@
-<div class="voter" ng-show="name.record.name" ng-class="{boy: is_boy(), girl: is_girl()}">
-	<ons-gesture-detector ng-swipeleft="tearOff('left', true)" ng-swipeup="tearOff('down', true)" ng-swiperight="tearOff('right', true)" style="height:100px;">
-		<ons-row class="back"><ons-col align="center"><ons-icon size="80%" icon="fa-check"></ons-icon> {{message}}</ons-col></ons-row>
-		<ons-row ng-class="{gone_left: gone.left, gone_down: gone.down, gone_right: gone.right}">
-			<ons-col align="center">{{name.record.name}}</ons-col>
-		</ons-row>
-	</ons-gesture-detector>
+<div class="voter-back" ng-class="{disliked: gone.left, liked: gone.right}">
+	<div class="voter" ng-show="name.record.name" ng-class="{boy: is_boy(), girl: is_girl(), gone_left: gone.left, gone_down: gone.down, gone_right: gone.right}">
+		<ons-gesture-detector ng-swipeleft="tearOff('left', true)" ng-swipeup="tearOff('down', true)" ng-swiperight="tearOff('right', true)" style="height:100%;">
+			<ons-row>
+				<ons-col align="center">{{name.record.name}}</ons-col>
+			</ons-row>
+		</ons-gesture-detector>
+	</div>
 </div>
 
 <div class="question" ng-hide="name.record.name">
@@ -16,7 +17,14 @@
 	</ons-row>
 </div>
 
-<div class="voting-info"><a style="color:#fff;" href="http://de.wikipedia.org/wiki/{{name.record.name}}"><ons-icon icon="fa-info"></ons-icon></a> <span>{{name.record.likes}} Likes</span></div>
+<div class="voting-info">
+	<span class="left">
+		<a style="color:#fff;" href="http://de.wikipedia.org/wiki/{{name.record.name}}">
+			<ons-icon size="25px" icon="fa-info-circle"></ons-icon>
+		</a>
+	</span>
+	<span class="right">{{name.record.likes}} Likes</span>
+</div>
 
 <div class="voting-like-dislike">
 	<ons-gesture-detector ng-click="tearOff('left')" style="display:inline;">

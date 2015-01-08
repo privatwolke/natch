@@ -101,8 +101,8 @@ app.controller "ConnectController", [
 			)
 
 		$scope.checkMinMax = (type) ->
-			$scope.prefs.maxlength = $scope.prefs.minlength  if type is "min" and parseInt($scope.prefs.minlength) > parseInt($scope.prefs.maxlength)
-			$scope.prefs.minlength = $scope.prefs.maxlength  if type is "max" and parseInt($scope.prefs.maxlength) < parseInt($scope.prefs.minlength)
+			$scope.prefs.maxlength = $scope.prefs.minlength if type is "min" and parseInt($scope.prefs.minlength) > parseInt($scope.prefs.maxlength)
+			$scope.prefs.minlength = $scope.prefs.maxlength if type is "max" and parseInt($scope.prefs.maxlength) < parseInt($scope.prefs.minlength)
 
 	]
 

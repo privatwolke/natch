@@ -1,31 +1,24 @@
-
-<div>
-    <ons-row class="heading">Einstellungen</ons-row>
-
+<div class="settings">
     <ons-list>
+        <ons-list-header></ons-list-header>
+
+        <ons-list-item modifier="tappable">
+            <ons-icon icon="fa-user" class="fa-fw">
+            </ons-icon>
+            <input type="text" class="text-input text-input--transparent" placeholder="Mein Name" style="margin-top: 7px">
+            <!--input type="text" id="name" ng-model="prefs.name" -->
+        </ons-list-item>
 
         <ons-list-header></ons-list-header>
 
         <ons-list-item>
-            <ons-icon icon="fa-user"></ons-icon>
-            Meinen Namen hinzufügen:
-            <input type="text" id="name" ng-model="prefs.name">
-        </ons-list-item>
-
-        <ons-list-item>
-            <ons-row>
-                Namenlänge&nbsp;<span ng-show="prefs.minlength != prefs.maxlength">{{prefs.minlength}} - {{prefs.maxlength}}</span>
-                           <span ng-show="prefs.minlength == prefs.maxlength">{{prefs.minlength}}</span>
-                &nbsp;Zeichen
-            </ons-row>
+            <ons-icon icon="fa-arrows-h" class="fa-fw"></ons-icon>
+            Namenslänge
+            <b class="pull-right">max. {{prefs.maxlength}} Zeichen</b>
             <ons-row>
                 <ons-col class="range-wrapper">
-                    <input type="range" min="3" max="10" class="range" ng-model="prefs.minlength" ng-change="checkMinMax('min')" >
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col class="range-wrapper">
-                    <input type="range" min="3" max="10" class="range" ng-model="prefs.maxlength" ng-change="checkMinMax('max')">
+                    <input type="range" min="3" max="10" class="range" ng-model="prefs.maxlength"
+                           ng-change="checkMinMax('max')">
                 </ons-col>
             </ons-row>
         </ons-list-item>
@@ -33,19 +26,21 @@
         <ons-list-header></ons-list-header>
 
         <ons-list-item modifier="tappable">
-            <label class="checkbox checkbox--noborder checkbox--list-item" for="gender-male">
+            <label class="checkbox checkbox--list-item" for="gender-male">
+                <ons-icon icon="fa-male" class="fa-fw"></ons-icon>
+                Männliche Namen
                 <input type="checkbox" id="gender-male" ng-model="prefs.male">
 
-                <div class="checkbox__checkmark checkbox--noborder__checkmark checkbox--list-item__checkmark"></div>
-                männliche Namen
+                <div class="checkbox__checkmark checkbox--list-item__checkmark pull-right"></div>
             </label>
         </ons-list-item>
         <ons-list-item modifier="tappable">
-            <label class="checkbox checkbox--noborder checkbox--list-item" for="gender-female">
+            <label class="checkbox checkbox--list-item" for="gender-female">
+                <ons-icon icon="fa-female" class="fa-fw"></ons-icon>
+                Weibliche Namen
                 <input type="checkbox" id="gender-female" ng-model="prefs.female">
 
-                <div class="checkbox__checkmark checkbox--noborder__checkmark checkbox--list-item__checkmark"></div>
-                weibliche Namen
+                <div class="checkbox__checkmark checkbox--list-item__checkmark pull-right"></div>
             </label>
         </ons-list-item>
 
@@ -72,7 +67,7 @@
 
         <ons-list-item ng-show="connection.active" class="question">
             <ons-row class="heading">Verbindung hergestellt</ons-row>
-            <ons-row>Du bist mit&nbsp;<b>{{connection.name}}</b>&nbsp;verbunden.</ons-row>
+            <ons-row>Du verwendest natch gemeinsam mit&nbsp;<b>{{connection.name}}</b>.</ons-row>
             <ons-row>
                 <input type="button" value="Verbindung entfernen" ng-click="removeConnection()"/>
             </ons-row>
@@ -83,13 +78,12 @@
         <ons-list-header></ons-list-header>
 
         <ons-list-item modifier="tappable">
-            Natch mit anderen teilen.
+            Erzähle deinen Freunden von natch.
         </ons-list-item>
 
         <ons-list-item modifier="tappable">
-            Natch kontaktieren.
+            Fragen? Ideen? Kontaktiere uns!
         </ons-list-item>
 
     </ons-list>
 </div>
-

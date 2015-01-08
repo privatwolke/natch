@@ -18,6 +18,7 @@
 
 .tab-bar {
 	background:#107f9a;
+	display:none;
 }
 
 :checked + .tab-bar__button {
@@ -80,6 +81,8 @@
 		margin-left:45%;display:inline-block;font-weight:700;font-style:oblique;font-family:'Enzo OT'
 	}
 }
+
+.navigation-bar { padding:5px; }
 
 .voting-like-dislike {
 	text-align:center; margin-top:30px;

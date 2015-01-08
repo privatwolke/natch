@@ -12,6 +12,8 @@ app.controller "AppController", [
 
 		if prefs.all().length is 0
 
+			name = window.prompt("Wie ist dein Name?")
+
 			# register user
 			$http.post(
 				"http://www.breibox.at/natch/api/user",
@@ -31,6 +33,11 @@ app.controller "AppController", [
 					name: "user_fbtoken"
 					value: data.fb_token
 				)
+
+				prefs.add(
+					name: "user_name"
+					value: name
+				)
 				run()
 			)
 		else:
@@ -45,6 +52,11 @@ app.controller "ConnectController", [
 
 		$scope.inputCode = ""
 		token = $scope.preferences.user_token
+
+		$scope.prefs =
+			male: true,
+			female: true
+			maxlength: 100
 
 		$http.get("http://www.breibox.at/natch/api/connection",
 			params:

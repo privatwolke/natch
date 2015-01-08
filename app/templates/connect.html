@@ -8,7 +8,6 @@
 	<ons-row>Hast du einen Code bekommen?</ons-row>
 	<ons-row><input type="text" ng-model="inputCode" placeholder="Code einfügen" style="font:150% monospace; border:0;" /></ons-row>
 	<ons-row>
-		<ons-col><button>Abbrechen</button></ons-col>
 		<ons-col><input type="button" ng-click="doConnect()" value="Verbinden"/></ons-col>
 	</ons-row>
 </div>
@@ -27,3 +26,13 @@
 </div>
 
 <!-- END CONNECTION IS ACTIVE -->
+
+<div class="question">
+	<ons-row class="heading">Einstellungen</ons-row>
+	<ons-row>Hallo {{preferences.name}}!</ons-row>
+	<ons-row>
+		<input type="checkbox" id="gender-male" ng-model="prefs.male"><label for="gender-male">männliche Namen</label><br/>
+		<input type="checkbox" id="gender-female" ng-model="prefs.female"><label for="gender-female">weibliche Namen</label><br/>
+	</ons-row>
+	<ons-row><input type="number" id="length" ng-model="prefs.maxlength" style="width:50px;">&nbsp;<label for="length">maximale Länge</label></ons-row>
+</div>
